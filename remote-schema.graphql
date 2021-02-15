@@ -1,0 +1,138 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Attendance {
+    program: Program
+    programId: ID!
+    resident: Resident
+    residentId: ID!
+    status: EnumStatus
+}
+
+type Mutation {
+    createProgram(input: ProgramInput!): Program!
+    createResident(input: ResidentInput!): Resident!
+    setAttendance(input: AttendanceInput!): Attendance!
+}
+
+type Program {
+    allDay: Boolean!
+    attendance: [Attendance!]!
+    dimension: String!
+    end: DateTime!
+    facilitators: [String!]!
+    hobbies: [String!]!
+    id: ID!
+    isRepeated: Boolean
+    levelOfCare: [LevelOfCare!]!
+    location: String!
+    name: String!
+    parentId: ID
+    recurrence: Recurrence
+    start: DateTime!
+    tags: [String!]!
+}
+
+type Query {
+    programs: [Program!]!
+    residents: [Resident!]!
+}
+
+type Recurrence {
+    byDay: Int
+    byHour: Int
+    byMinute: Int
+    byMonth: Int
+    byMonthday: Int
+    bySecond: Int
+    bySetPos: String
+    byWeekday: Int
+    byWeekno: Int
+    byYearday: Int
+    count: Int
+    dtstart: DateTime
+    frequency: String
+    interval: Int
+    until: DateTime
+    weekstart: Int
+}
+
+type Resident {
+    ambulation: Ambulation
+    attendance: [Attendance!]!
+    birthDate: DateTime!
+    createdAt: DateTime!
+    firstName: String!
+    id: ID!
+    lastName: String!
+    levelOfCare: LevelOfCare
+    moveInDate: DateTime!
+    name: String!
+    preferredName: String
+    room: String!
+    status: String
+    updatedAt: DateTime!
+}
+
+enum Ambulation {
+    CANE
+    NOLIMITATIONS
+    WALKER
+    WHEELCHAIR
+}
+
+enum EnumStatus {
+    Active
+    Declined
+    Passive
+    Undefined
+}
+
+enum LevelOfCare {
+    ASSISTED
+    INDEPENDENT
+    LONGTERM
+    MEMORY
+}
+
+input AttendanceInput {
+    programId: ID!
+    residentId: ID!
+    status: EnumStatus!
+}
+
+input ProgramInput {
+    allDay: Boolean!
+    dimension: String!
+    end: DateTime!
+    facilitators: [String!]!
+    hobbies: [String!]!
+    isRepeated: Boolean
+    levelOfCare: [LevelOfCare!]!
+    location: String!
+    name: String!
+    parentId: ID
+    start: DateTime!
+    tags: [String!]!
+}
+
+input ResidentInput {
+    ambulation: Ambulation
+    birthDate: DateTime!
+    firstName: String!
+    lastName: String!
+    levelOfCare: LevelOfCare
+    moveInDate: DateTime!
+    name: String!
+    preferredName: String
+    room: String!
+    status: String
+}
+
+
+"A data and time, represented in ISO-8601 string"
+scalar DateTime
