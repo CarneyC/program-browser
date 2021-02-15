@@ -16,8 +16,9 @@ import {
 import { useMemo } from 'react';
 import ProgramContent from './program-content';
 import ProgramHeader from './program-header';
-import { Container } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import HelpIcon from '@material-ui/icons/Help';
 
 const currentDate = '2018-11-01';
 
@@ -25,7 +26,16 @@ const useStyle = makeStyles(() => ({
   root: {
     display: 'flex',
     height: '100vh',
-    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  tips: {
+    display: 'flex',
+    margin: '1rem',
+    color: '#8a8a8a',
+  },
+  icon: {
+    marginRight: '0.4rem',
   },
 }));
 
@@ -59,6 +69,10 @@ export default function ProgramCalendar({ data }) {
           />
         </Scheduler>
       </Paper>
+      <Box className={classes.tips}>
+        <HelpIcon className={classes.icon} />
+        <Typography>Click on an item to see more detail.</Typography>
+      </Box>
     </Container>
   );
 }
